@@ -2,7 +2,13 @@ package rays;
 import java.lang.*;
 
 public class device{
-	
+	//enum to define quadrants
+	public enum QUADRANT{
+		FIRST,
+		SECOND,
+		THIRD,
+		FOURTH
+	}
 	position objPosition;
 	int offsetAngle;
 	int samplingFrequency;
@@ -52,16 +58,38 @@ public class device{
 		
 	}
 	
-	protected int relativeFinder(position p){
+	//finds which relative quandrant the signal crosses or random point is compared to device
+	protected QUADRANT relativeFinder(position p){
 		
 		if(p.x > objPosition.x && p.y >= objPosition.y){
+			return FIRST;
 		}
 		else if(p.x >= objPosition.x && p.y < objPosition.y){
+			return FOURTH;
 		}
 		else if(p.x <= objPosition.x && p.y > objPosition.y){
+			return SECOND;
 		}
 		else if(p.x < objPosition.x && p.y <= objPosition.y){
-		
+			return THIRD;
+		}
+	}
+	
+	protected int angleFinder(position p){
+		int x_diff = p.x - objPosition.x;
+		int y_diff = p.y - objPosition.y;
+		double inverseTan = (double) y/x;
+		int theta = Math.atan((double)y/x));
+		switch(relativeFinder(p)){
+			case FIRST:
+				break;
+			case SECOND:
+				break;
+			case THIRD:
+				break;
+			case FOURTH:
+				break;
+			
 		}
 	}
 	
