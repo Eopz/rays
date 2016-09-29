@@ -1,0 +1,4 @@
+public class PolarPosition{
+	int r;
+	int theta;
+}

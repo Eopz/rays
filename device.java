@@ -49,12 +49,17 @@ public class device{
 		samplingFrequency = s;
 	}
 	
+	/*
+		Takes a sample
+	*/
 	public Samples takeSample(position p){
 		int x = p.x + objPosition.x;
 		int y = p.y + objPosition.y;
 		
 		int r = Math.hypot(x,y);
+		int theta = angleFinder(p);
 		
+		return new Samples(r, theta, objPosition);
 		
 	}
 	
@@ -75,6 +80,11 @@ public class device{
 		}
 	}
 	
+	/*
+		Finds the angle in radian values
+		Returns value in Radian
+		For relative to the device itself
+	*/
 	protected int angleFinder(position p){
 		int x_diff = p.x - objPosition.x;
 		int y_diff = p.y - objPosition.y;
@@ -84,13 +94,17 @@ public class device{
 			case FIRST:
 				break;
 			case SECOND:
+				theta + Math.PI;
 				break;
 			case THIRD:
+				theta + Math.PI;
 				break;
 			case FOURTH:
+				theta + Math.PI * 2;
 				break;
 			
 		}
+		return theta;
 	}
 	
 }
