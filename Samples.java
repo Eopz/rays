@@ -13,5 +13,12 @@ public class Samples{
 		relativePosition = p; 
 	}
 	
-	public position 
+	//returns the absolute position of this sample
+	public position absolutePosition(){
+	}
+	
+	//toString function
+	public String toString(){
+		return "This is the r: " + r + "\nThis is the theta: " + theta + "\This is what it's relative to" + relativePosition.toString();
+	}
 }

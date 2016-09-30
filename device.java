@@ -10,7 +10,7 @@ public class device{
 		FOURTH
 	}
 	position objPosition;
-	int offsetAngle;
+	int offsetAngle; //Not sure why this is there right now, might end up deleting in later iteration
 	int samplingFrequency;
 	int facingAngle;
 	
