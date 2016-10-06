@@ -1,4 +1,3 @@
-package rays;
 import java.lang.*;
 
 public class device{
@@ -10,37 +9,37 @@ public class device{
 		FOURTH
 	}
 	position objPosition;
-	int offsetAngle; //Not sure why this is there right now, might end up deleting in later iteration
+	double offsetAngle; //Not sure why this is there right now, might end up deleting in later iteration
 	int samplingFrequency;
-	int facingAngle;
+	double facingAngle;
 	
 	//initialize a device that takes a signal
-	public device(int p, int o, int s, int f){
+	public device(position p, double o, int s, double f){
 		
-		position = p;
+		objPosition = p;
 		offsetAngle = o;
-		samplingFrequnecy = s;
+		samplingFrequency = s;
 		facingAngle = f;
 	}
 	
 	//The direction of the signal relative to 0 degrees
-	public int angleFromOrigin(){
-		return facingAngle + offSetAngle;
+	public double angleFromOrigin(){
+		return facingAngle + offsetAngle;
 	}
 	
 	/*
 		All the change functions are there to let people set variables
 		Can change any of the values of device
 	*/
-	public void changeOffsetAngle(int o){
+	public void changeOffsetAngle(double o){
 		offsetAngle = o;
 	}
 	
-	public void changeFacingAngle(int f){
+	public void changeFacingAngle(double f){
 		facingAngle = f;
 	}
 	
-	public void changePosition(int x, int y){
+	public void changePosition(double x, double y){
 		objPosition.x = x;
 		objPosition.y = y;
 	}
@@ -53,11 +52,11 @@ public class device{
 		Takes a sample
 	*/
 	public Samples takeSample(position p){
-		int x = p.x + objPosition.x;
-		int y = p.y + objPosition.y;
+		double x = p.x - objPosition.x;
+		double y = p.y - objPosition.y;
 		
-		int r = Math.hypot(x,y);
-		int theta = angleFinder(p);
+		double r = Math.hypot(x,y);
+		double theta = angleFinder(p);
 		
 		return new Samples(r, theta, objPosition);
 		
@@ -67,17 +66,18 @@ public class device{
 	protected QUADRANT relativeFinder(position p){
 		
 		if(p.x > objPosition.x && p.y >= objPosition.y){
-			return FIRST;
+			return QUADRANT.FIRST;
 		}
 		else if(p.x >= objPosition.x && p.y < objPosition.y){
-			return FOURTH;
+			return QUADRANT.FOURTH;
 		}
 		else if(p.x <= objPosition.x && p.y > objPosition.y){
-			return SECOND;
+			return QUADRANT.SECOND;
 		}
-		else if(p.x < objPosition.x && p.y <= objPosition.y){
-			return THIRD;
+		else{ //if(p.x < objPosition.x && p.y <= objPosition.y){
+			return QUADRANT.THIRD;
 		}
+		
 	}
 	
 	/*
@@ -85,22 +85,22 @@ public class device{
 		Returns value in Radian
 		For relative to the device itself
 	*/
-	protected int angleFinder(position p){
-		int x_diff = p.x - objPosition.x;
-		int y_diff = p.y - objPosition.y;
-		double inverseTan = (double) y/x;
-		int theta = Math.atan((double)y/x));
+	protected double angleFinder(position p){
+		double x_diff = p.x - objPosition.x;
+		double y_diff = p.y - objPosition.y;
+		double inverseTan = (double) y_diff/x_diff;
+		double theta = Math.atan(inverseTan);
 		switch(relativeFinder(p)){
 			case FIRST:
 				break;
 			case SECOND:
-				theta + Math.PI;
+				theta = theta + Math.PI;
 				break;
 			case THIRD:
-				theta + Math.PI;
+				theta = theta + Math.PI;
 				break;
 			case FOURTH:
-				theta + Math.PI * 2;
+				theta = theta + Math.PI * 2;
 				break;
 			
 		}

@@ -1,10 +1,10 @@
 public class PolarPosition{
 	
-	int r;
-	int theta;
+	double r;
+	double theta;
 	
-	public PolarPosition(int r, int theta){
-		r.this = r;
-		theta.this = theta;
+	public PolarPosition(double r, double theta){
+		this.r = r;
+		this.theta = theta;
 	}
 }
