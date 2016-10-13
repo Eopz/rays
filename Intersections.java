@@ -5,10 +5,6 @@ public class Intersections{
 		myTask thread = new myTask(d1, 10);
 		Thread t1 = new Thread(thread, "device 1");
 		t1.start();
-		try{
-			t1.sleep(5000);
-		} catch(InterruptedException e){
-		}
 		//Timer timer = new Timer();
 		/*device d1 = new device(new position(3, 3), 0, 10, 0);
 		device d2 = new device(new position(3, 0), 0, 10, 0);

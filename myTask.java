@@ -21,7 +21,8 @@ public class myTask implements Runnable{
 			randomObj = new position(t1,t2);
 			dSamples.add(d.takeSample(randomObj));
 			try{
-				Thread.sleep(500);
+				System.out.println("Sample Number " + i + " has been added.");
+				Thread.sleep(1000/d.samplingFrequency);
 			} catch(InterruptedException e){
 			}
 		}
