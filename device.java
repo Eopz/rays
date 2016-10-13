@@ -63,7 +63,7 @@ public class device{
 	}
 	
 	//finds which relative quandrant the signal crosses or random point is compared to device
-	protected QUADRANT relativeFinder(position p){
+	public QUADRANT relativeFinder(position p){
 		
 		if(p.x > objPosition.x && p.y >= objPosition.y){
 			return QUADRANT.FIRST;
@@ -85,7 +85,7 @@ public class device{
 		Returns value in Radian
 		For relative to the device itself
 	*/
-	protected double angleFinder(position p){
+	public double angleFinder(position p){
 		double x_diff = p.x - objPosition.x;
 		double y_diff = p.y - objPosition.y;
 		double inverseTan = (double) y_diff/x_diff;

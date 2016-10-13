@@ -12,11 +12,15 @@ public class position{
 		this.x = x;
 		this.y = y;
 	}
-	/*
+
 	public PolarPosition convertToPolarPosition(){
-		int r = Math.hypot(x,y);
+		double r = Math.hypot(x,y);
+		device temp = new device(new position(0,0), 0, 0, 0);
+		double theta = temp.angleFinder(this);
+		
+		return new PolarPosition(r, theta);
 	}
-	*/
+
 	public String toString(){
 		return "The X-coordinate is: " + x + "\nThe Y-coordinate is: " + y;
 	}
