@@ -10,5 +10,11 @@ public class Intersections{
 		
 		//Run
 		t1.start();
+		
+		//Testing Conversion Functionality
+		position testpos = new position(-5, 10);
+		System.out.println(testpos.convertToPolarPosition().toString());
+		PolarPosition testPP = new PolarPosition(5, 3.14);
+		System.out.println(testPP.convertToPosition().toString());
 	}
 }
